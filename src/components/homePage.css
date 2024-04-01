@@ -1,15 +1,7 @@
 
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-
 body {
-	background: var(--white) !important;
+	background: var(--white);
 	overflow: hidden;
 	justify-content: center;
 	align-items: center;
@@ -29,19 +21,25 @@ body {
     margin-top: 30px; */
     padding: 30px 40px 0 40px;
 }
-
-.addTask
+.button
 {
+  
+}
+.addTask, .logout
+{
+    margin-left: 10px;
     height: 40px;
     width: 100px;
     border: none;
     background-color: var(--white);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 }
-.addTask:hover
+.addTask:hover, .logout:hover
 {
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
+
 .container-task
 {
     /* position: relative; */
@@ -161,14 +159,11 @@ flex-direction: column;
     left: 0;
     top: 0;
     background-color: #4f5d61;
-    opacity: 0;
-    z-index: -5;
-}
-.overlayer.pop
-{
+    /* opacity: 0; */
     opacity: 0.8;
     z-index: 5;
 }
+
 .box
 {
     position: absolute;
@@ -179,16 +174,13 @@ flex-direction: column;
     transform: translate(-50%, -50%);
     z-index: 6;
     background-color: #ffffff;
-    padding: 5px 25px;
+    padding: 5px 25px 30px;
     display: flex;
     flex-direction: column;
     border-radius: 6px;
-    opacity: 0;
-}
-.box.pop
-{
     opacity: 1;
 }
+
 .box .header 
 {
     justify-content: center;
@@ -198,8 +190,8 @@ flex-direction: column;
 }
 .header .close
 {
-    transform: translate(150px, -10px);
-    font-size: 30px;
+    transform: translate(120px, -20px);
+    font-size: 25px;
     border: none;
     background-color: var(--white);
 }
@@ -211,6 +203,11 @@ flex-direction: column;
 	width: 100%;
 	transition: all .3s ease;
     margin-bottom: 10px;
+}
+.box .title
+{
+    font-size: 13px;
+    font-weight: 200;
 }
 
 .box input:focus,
@@ -254,12 +251,13 @@ flex-direction: column;
     text-align: start;
     height: 30%;
 }
-.submit
+.submitTask
 {
-    height: 10%;
+    height: 24%;
     border-radius: 5px;
+    border: 0.3px solid #6b7070;
 }
-.submit:hover
+.submitTask:hover
 {
     background-color: #7fc7c7;
 }

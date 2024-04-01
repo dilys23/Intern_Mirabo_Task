@@ -1,38 +1,43 @@
- import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import './homePage.css';
 import logo from './logoname.svg';
-// import 'boxicons';
-import addTask from './addTask';
+import NewTask from './Task';
 function HomePage() {
     const [showaddTask, setshowaddTask] = useState(false);
-    const pop= () =>
+    const logout = () =>
     {
+        window.location.href = "/login";
+    }
+    const pop = () => {
         setshowaddTask(true);
-    } 
+        console.log('Them duoc roi');
+    }
     const popremove = () => {
         setshowaddTask(false);
-      }
-    const allowDrop = (ev) =>
-    {
+    }
+    const allowDrop = (ev) => {
         ev.preventDefault();
     };
-    const drag = (ev)=>
-   {
-    ev.dataTransfer.setData("text", ev.target.id);
+    const drag = (ev) => {
+        ev.dataTransfer.setData("text", ev.target.id);
     }
-    const drop = (ev)=>
-  {
-  ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
-   }
-
+    const drop = (ev) => {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+    }
+    
 
     return (
         <><div className="header">
             <img src={logo} alt="" />
+            <div className="button">
             <button className="addTask" onClick={pop}>+ New task</button>
+            <button className="logout" onClick={logout}>Log out</button>
+                
+            </div>
+            
         </div><div className="container-task">
                 <div className="task-list" id="todo" onDrop={drop} onDragOver={allowDrop}>
                     <div className="task-header">
@@ -141,25 +146,12 @@ function HomePage() {
                         </div>
                     </div>
                 </div>
+                
             </div>
-            {setshowaddTask && <addTask onClose={popremove} />}
-            {/* <div className="overlayer"></div>
-            <div className="box">
-                <div className="header">
-                    <h3>Add new todo</h3>
-                    <button className="close" onClick={popremove}>
-                        <i className="bx bx-x"></i>
-                    </button>
-                </div>
-                <input
-                    type="text"
-                    className="category"
-                    placeholder="Category Etc Marketing" />
-                <input type="text" className="title" placeholder="Title" />
-                <input type="text" className="contentTask" placeholder="Content" ></input>
-                <button className="submitTask" id="enter">Submit</button>
-    </div > */}
-   </>
+            {showaddTask && <NewTask onClose={popremove} />}
+            
+
+        </> 
 
     );
 

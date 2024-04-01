@@ -2,6 +2,7 @@
 import  { useState } from 'react';
 import './login.css';
 import './style.css'
+
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -17,10 +18,8 @@ function LoginPage() {
 
   const verifyAccount = (e) => {
     e.preventDefault();
-    if (username === "Dilys" && password === "231203") {
+    if (username === "Dilys" && password === "Dilys231203") {
       alert("You are logged in as Admin");
-      // Đoạn code để chuyển đến trang HomePage ở đây
-      // history.push("/homepage");
       window.location.href = "/homepage";
      
     } else {
@@ -45,7 +44,7 @@ function LoginPage() {
 					<input type="password" pattern=".{8,}" id="password" placeholder="Your password" value={password} onChange={handlePasswordChange}></input>
 					<i className='bx bx-lock-alt' ></i>
 				</div>
-				<span className="help-text">At least 8 characters</span>
+				<span className="help-text"><p>At least 8 characters</p></span>
 			</div>
 			<button type="submit" className="btn-submit" id="login-btn" onClick={verifyAccount}>Login</button>
 			<a href="#">Forgot password?</a>
