@@ -15,7 +15,7 @@ body {
     height: 550px;
 	position: relative;
 }
-form {
+#formLogin{
 	background-color:#abd7fd ;
 	width: 100%;
 	padding: 28px;
@@ -33,25 +33,20 @@ form {
 	font-weight: 600;
 	margin-bottom: 20px;
 }
-.help-text p{
-	margin-top: 10px;
-	margin-left: 5px;
-	color: rgb(80, 79, 79);
-	font-size: 15px;
-}
-.form-group {
+
+#form-group {
 	margin-bottom: 14px;
 }
-.form-group label {
+#form-group label {
 	display: inline-block;
 	margin-bottom: 4px;
     font-size: 18px;
 }
-.input-group {
+#input-group {
 	width: 100%;
 	position: relative;
 }
-.input-group input {
+#input-group input {
 	padding: 12px 40px 12px 20px;
 	outline: none;
 	border-radius: 6px;
@@ -59,60 +54,17 @@ form {
 	width: 100%;
 	transition: all .3s ease;
     font-size: 16px;
+	border-color: white;
 }
 
-/* Validation */
-.input-group input:focus,
-.input-group input:not(:placeholder-shown) {
-	border-color: var(--blue);
-	background: var(--grey);
-}
-.input-group input:focus + i,
-.input-group input:not(:placeholder-shown) + i {
-	color: var(--blue);
-}
-.input-group input:focus:valid {
-	box-shadow: 0 0 0 4px var(--light-green);
-}
-.input-group input:valid:not(:placeholder-shown) {
-	border-color: var(--green);
-}
-.input-group input:valid:not(:placeholder-shown) + i {
-	color: var(--green);
-}
-.input-group input:invalid:not(:placeholder-shown) {
-	border-color: var(--red);
-}
-.input-group input:invalid:not(:placeholder-shown) + i {
-	color: var(--red);
-}
-.input-group input:focus:invalid {
-	box-shadow: 0 0 0 4px var(--light-red);
-}
-.input-group input:focus,
-.input-group input:focus:placeholder-shown {
-	box-shadow: 0 0 0 4px var(--bs);
-}
-/* Validation */
 
-.input-group i {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	right: 20px;
-	color: var(--text);
-	pointer-events: none;
-	transition: all .3s ease;
-}
-.form-group .help-text {
-	font-size: 12px;
-	color: var(--text);
-}
-.btn-submit {
+
+#login-btn{
 	padding: 12px 0;
 	display: block;
 	width: 100%;
 	color: #fff;
+	height: 50px;
 	border-radius: 6px;
 	cursor: pointer;
 	transition: all .3s ease;
@@ -121,6 +73,6 @@ form {
 	background: var(--blue);
 	margin-bottom: 20px;
 }
-.btn-submit:hover {
+#login-btn:hover {
 	background: var(--dark-blue);
 }

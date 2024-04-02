@@ -1,21 +1,36 @@
-// api/index.js
 import axios from "axios";
 
-// Create a client
 const client = axios.create({
-  baseURL: "",
+  baseURL: " ",
 });
 
-// Define API endpoints
 const endpoints = {
   users: "/users",
   user: (id) => `/users/${id}`,
 };
 
-// Export a function to call API
+client.interceptors.request.use(
+  function (config) {
+    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
+client.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
 export const getUsers = () => client.get(endpoints.users);
 
 export const getUser = (id) => client.get(endpoints.user(id));
 
-// Export the client for advanced usage
 export default client;
+
