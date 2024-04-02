@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import './style.css';
 // E:\Itern_Mirabo\Day1\my-react-app\src\components\style.css
 import './homePage.css';
-import logo from './logoname.svg';
-import NewTask from '../Task/Task';
+ import logo from '../../assets/logoname.svg';
+import NewTask from '../../components/Task/Task';
 function HomePage() {
     const [showaddTask, setshowaddTask] = useState(false);
     const logout = () =>

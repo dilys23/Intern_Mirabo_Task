@@ -1,4 +1,4 @@
-import '../Home/style.css';
+import '../../pages/Home/style.css';
 import { MdOutlineCancel } from "react-icons/md";
 function addTask({onClose})
 {
