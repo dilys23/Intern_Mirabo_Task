@@ -2,9 +2,11 @@
 import { useState } from "react";
 import "./login.css";
 import "../../pages/Home/style.css";
-import { Input, Button, Form } from "antd";
+import { Input, Button, Form , ConfigProvider} from "antd";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
+import theme from "../../theme/index";
+
 // import 'antd/dist/antd.css';
 
 function LoginPage() {
@@ -31,6 +33,8 @@ function LoginPage() {
   };
 
   return (
+    <>
+    <ConfigProvider direction="rtl" theme={theme}>
     <div className="container">
       <Form onFinish={verifyAccount} className="login active" id="formLogin">
         <h2 className="title">Login with your account</h2>
@@ -76,6 +80,8 @@ function LoginPage() {
         <a href="#">Forgot password?</a>
       </Form>
     </div>
+    </ConfigProvider>
+    </>
   );
 }
 
