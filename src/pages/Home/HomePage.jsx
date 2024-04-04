@@ -5,10 +5,13 @@ import './style.css';
 import './homePage.css';
 import logo from '../../assets/logoname.svg';
 import NewTask from '../../components/Task/AddTask';
+import { useNavigate } from "react-router-dom";
+
 function HomePage() {
     const [showaddTask, setshowaddTask] = useState(false);
+    const navigate = useNavigate();
     const logout = () => {
-        window.location.href = "/login";
+        navigate("/");
     }
     const pop = () => {
         setshowaddTask(true);
