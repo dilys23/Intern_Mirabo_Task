@@ -1,7 +1,7 @@
 import { Button, Input } from 'antd';
 import { MdOutlineCancel } from "react-icons/md";
 
-function addTask({ onClose }) {
+function AddTask({ onClose }) {
   return (
     <div>
       <div className="overlayer"></div>
@@ -27,4 +27,4 @@ function addTask({ onClose }) {
   );
 }
 
-export default addTask;
+export default AddTask;
