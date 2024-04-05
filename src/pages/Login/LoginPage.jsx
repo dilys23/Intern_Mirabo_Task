@@ -1,24 +1,14 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./login.css";
 import "../../pages/Home/style.css";
-import { Input, Button, Form } from "antd";
+import { Button, Checkbox, Form, Input } from "antd";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiLockPasswordLine } from "react-icons/ri";
-
+import { useEffect } from "react";
+import { CPATH } from "../../constants/path";
 
 function LoginPage() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
 
   const mockAPI = (callback, delay = 1000) => {
     setTimeout(() => {
@@ -29,66 +19,109 @@ function LoginPage() {
           id: 1,
           username: "Dilysnguyen",
           email: "dilysnguyen@gmail.com",
-          password: "Dilysnguyen"
-        }
+          password: "Dilysnguyen",
+        },
       };
       callback(data);
     }, delay);
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = (values, form) => {
     event.preventDefault();
 
     mockAPI((data) => {
-      if (data.success) {
+      if (
+        values.username === data.user.username &&
+        values.password === data.user.password
+      ) {
         localStorage.setItem("user", JSON.stringify(data.user));
         navigate("/homepage");
       } else {
-        console.error(data.message);
+        console.error("Invalid username or password");
+        alert("Invalid username or password");
+        form.resetFields();
       }
     });
   };
 
+  const onFinish = (values, form) => {
+    handleLogin(values, form);
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
+
+  const isAuthenticated = () => {
+    const user = localStorage.getItem("user");
+    return user ? true : false;
+  };
+
+  const location = useLocation();
+
+  useEffect(() => {
+    if (isAuthenticated()) {
+      navigate(CPATH.HOME);
+    }
+  }, [location, navigate]);
   return (
     <>
       <div className="container">
-        <Form  className="login active" id="formLogin">
-          <h2 className="title">Login with your account</h2>
+        <Form
+          className="login active"
+          id="formLogin"
+          name="login"
+          style={{
+            maxWidth: 600,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <h2 className="title" style={{ textAlign: "center" }}>
+            Login with your account
+          </h2>
           <div id="input-group">
+            <p>Username</p>
+
             <Form.Item
+              label=""
               name="username"
-              rules={[{ required: true, message: "Please input your username!" }]}
+              labelCol={{ flex: "0 0 100px" }}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your username!",
+                },
+              ]}
             >
-              <Input
-                placeholder="Username"
-                name="username"
-                value={username}
-                onChange={handleUsernameChange}
-                prefix={<AiOutlineUser />}
-              />
+              <Input />
             </Form.Item>
+            <p>Password</p>
+
             <Form.Item
+              label=""
               name="password"
-              rules={[{ required: true, message: "Please input your password!" }]}
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
             >
-              <Input.Password
-                placeholder="Password"
-                name="password"
-                value={password}
-                onChange={handlePasswordChange}
-                prefix={<RiLockPasswordLine />}
-              />
+              <Input.Password />
             </Form.Item>
             <span className="help-text">
               <p>At least 8 characters</p>
             </span>
+            <Form.Item name="remember" valuePropName="checked">
+              <Checkbox>Remember me</Checkbox>
+            </Form.Item>
             <Form.Item>
               <Button
                 type="primary"
                 htmlType="submit"
                 className="btn-submit"
                 id="login-btn"
-                onClick={handleLogin}
               >
                 Login
               </Button>
