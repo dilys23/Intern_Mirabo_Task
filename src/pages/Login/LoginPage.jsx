@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./login.css";
@@ -44,12 +42,9 @@ function LoginPage() {
     mockAPI((data) => {
       if (data.success) {
         localStorage.setItem("user", JSON.stringify(data.user));
-        // window.location.href = "/homepage";
         navigate("/homepage");
-        console.log("Login successful");
       } else {
         console.error(data.message);
-        console.log("Login failed");
       }
     });
   };
