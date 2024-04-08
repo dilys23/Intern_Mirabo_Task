@@ -26,5 +26,5 @@ export default function Router() {
 
 const isAuthenticated = () => {
   const user = localStorage.getItem("user");
-  return user ? true : false;
+  return !!user ;
 };
