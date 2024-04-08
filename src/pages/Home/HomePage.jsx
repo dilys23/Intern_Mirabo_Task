@@ -12,7 +12,7 @@ function HomePage() {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("user");
-    navigate("/");
+    navigate("/login");
   };
   const pop = () => {
     setshowaddTask(true);

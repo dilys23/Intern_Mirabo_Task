@@ -1,19 +1,30 @@
-
+import { useRoutes } from "react-router-dom";
 import { lazy } from "react";
-import { CPATH } from '../constants/path';
-import LazyComponent from '../utils/lazyComponent';
-import PrivateRoute from './PrivateRoute';
+import LazyComponent from "../utils/lazyComponent";
+import { CPATH } from "../constants/path";
+import { Outlet, Navigate } from "react-router-dom";
+
 const LoginPage = LazyComponent(lazy(() => import("../pages/Login/LoginPage")));
 const HomePage = LazyComponent(lazy(() => import("../pages/Home/HomePage")));
-const getroutes = () => [
-  {
-    path: CPATH.HOME,
-    element: <HomePage />,
-  },
 
-  {
-    path: CPATH.LOGIN,
-    element: <LoginPage/>,
-  },
-];
-export default getroutes;
+export default function Router() {
+  let element = useRoutes([
+    {
+      path: "/",
+      element: isAuthenticated() ? (
+        <Outlet />
+      ) : (
+        <Navigate to={CPATH.LOGIN} replace />
+      ),
+      children: [{ path: "homePage", element: <HomePage /> }],
+    },
+    { path: "/login", element: <LoginPage /> },
+  ]);
+
+  return element;
+}
+
+const isAuthenticated = () => {
+  const user = localStorage.getItem("user");
+  return user ? true : false;
+};

@@ -2,13 +2,13 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "./login.css";
 import "../../pages/Home/style.css";
 import { Button, Checkbox, Form, Input } from "antd";
-import { AiOutlineUser } from "react-icons/ai";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { CPATH } from "../../constants/path";
 
 function LoginPage() {
   const navigate = useNavigate();
+  const [usenameError, setUsernameError] = useState(null);
+  const [passwordError, setPasswordError] = useState(null);
 
   const mockAPI = (callback, delay = 1000) => {
     setTimeout(() => {
@@ -27,7 +27,7 @@ function LoginPage() {
   };
 
   const handleLogin = (values, form) => {
-    event.preventDefault();
+    // event.preventDefault(); // This line is not necessary
 
     mockAPI((data) => {
       if (
@@ -35,25 +35,39 @@ function LoginPage() {
         values.password === data.user.password
       ) {
         localStorage.setItem("user", JSON.stringify(data.user));
+        alert("Login successful");
         navigate("/homepage");
-      } else {
-        console.error("Invalid username or password");
-        alert("Invalid username or password");
+      } else if (values.username !== data.user.username && values.password === data.user.password) {
+        console.error("Invalid username.");
+        setUsernameError("Invalid Username");
+         setPasswordError(null); 
+         // form.resetFields();
+      } else if (values.username === data.user.username && values.password !== data.user.password) {
+        console.error("Invalid Password.");
+        setPasswordError("Invalid Password");
+        setUsernameError(null);
         form.resetFields();
+      } 
+      else {
+        setUsernameError("Invalid credentials.");
+        setPasswordError("Invalid credentials.");
       }
     });
   };
 
   const onFinish = (values, form) => {
+    setUsernameError(null);
+    setPasswordError(null);
     handleLogin(values, form);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   const isAuthenticated = () => {
     const user = localStorage.getItem("user");
-    return user ? true : false;
+    return !!user;
   };
 
   const location = useLocation();
@@ -63,6 +77,7 @@ function LoginPage() {
       navigate(CPATH.HOME);
     }
   }, [location, navigate]);
+
   return (
     <>
       <div className="container">
@@ -86,6 +101,8 @@ function LoginPage() {
             <Form.Item
               label=""
               name="username"
+              validateStatus={usenameError ? "error" : ""}
+              help={usenameError}
               labelCol={{ flex: "0 0 100px" }}
               rules={[
                 {
@@ -101,6 +118,8 @@ function LoginPage() {
             <Form.Item
               label=""
               name="password"
+              validateStatus={passwordError ? "error" : ""}
+              help={passwordError}
               rules={[
                 {
                   required: true,
