@@ -2,7 +2,7 @@ import { Button, Input, Table } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { SearchOutlined } from "@ant-design/icons";
-import Search from "../../utils/searchTable";
+import Search from "../../components/molecules/m-search-input/searchTable";
 import TableComponent from "../../components/organisms/o-table/OTable";
 
 function App() {
@@ -29,26 +29,26 @@ function App() {
             filterIcon: () => {
               return <SearchOutlined />;
             },
-            sorter: (a, b) => a.key - b.key,
+            sorter: (a, b) => a[key] - b[key],
             onFilter: (value, record) => {
-              return record.key == value;
+              return String(record[key]).toLowerCase().includes(value.toLowerCase());
             },
           };
           cols.push(col);
         }
         setColumns(cols);
-        setDataSource(result.products);
+        setDataSource(list);
       });
   }, []);
 
   const [data, setData] = useState([
     {
-      name: "J ohn",
+      name: "John",
       age: 32,
       address: "New York",
     },
     {
-      name: "J im",
+      name: "Jim",
       age: 33,
       address: "Sydney",
     },
