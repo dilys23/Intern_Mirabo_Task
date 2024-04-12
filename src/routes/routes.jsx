@@ -3,6 +3,7 @@ import { lazy } from "react";
 import LazyComponent from "../utils/lazyComponent";
 import { CPATH } from "../constants/path";
 import { Outlet, Navigate } from "react-router-dom";
+// import { useAuthenticated } from "../customHoo k/useAuthenticated";
 
 const LoginPage = LazyComponent(lazy(() => import("../pages/Login/LoginPage")));
 const HomePage = LazyComponent(lazy(() => import("../pages/Home/HomePage")));
@@ -26,5 +27,5 @@ export default function Router() {
 
 const isAuthenticated = () => {
   const user = localStorage.getItem("user");
-  return !!user ;
+  return user ? true : false;
 };

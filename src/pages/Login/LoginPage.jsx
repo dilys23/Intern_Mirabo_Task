@@ -4,6 +4,7 @@ import "../../pages/Home/style.css";
 import { Button, Checkbox, Form, Input } from "antd";
 import { useEffect, useState } from "react";
 import { CPATH } from "../../constants/path";
+import { useAuthenticated } from "../../customHook/useAuthenticated";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -37,20 +38,49 @@ function LoginPage() {
         localStorage.setItem("user", JSON.stringify(data.user));
         alert("Login successful");
         navigate("/homepage");
-      } else if (values.username !== data.user.username && values.password === data.user.password) {
+      } else if (
+        values.username !== data.user.username &&
+        values.password === data.user.password
+      ) {
         console.error("Invalid username.");
         setUsernameError("Invalid Username");
-         setPasswordError(null); 
-         // form.resetFields();
-      } else if (values.username === data.user.username && values.password !== data.user.password) {
+        setPasswordError(null);
+        // form.resetFields();
+        // console.log("I - Invalid username");
+        // form.setFields([
+        //   {
+        //     name: "username",
+        //     errors: ["Invalid username."]
+        //   }
+        // ]);
+      } else if (
+        values.username === data.user.username &&
+        values.password !== data.user.password
+      ) {
         console.error("Invalid Password.");
         setPasswordError("Invalid Password");
         setUsernameError(null);
         form.resetFields();
-      } 
-      else {
+        // console.log("Invalid password");
+        // form.setFields([
+        //   {
+        //     name: "password",
+        //     errors: ["Invalid password."]
+        //   }
+        // ]);
+      } else {
         setUsernameError("Invalid credentials.");
         setPasswordError("Invalid credentials.");
+        // form.setFields([
+        //   {
+        //     name: "username",
+        //     errors: ["Invalid credentials."]
+        //   },
+        //   {
+        //     name: "password",
+        //     errors: ["Invalid credentials."]
+        //   }
+        // ]);
       }
     });
   };
@@ -65,15 +95,10 @@ function LoginPage() {
     console.log("Failed:", errorInfo);
   };
 
-  const isAuthenticated = () => {
-    const user = localStorage.getItem("user");
-    return !!user;
-  };
-
   const location = useLocation();
 
   useEffect(() => {
-    if (isAuthenticated()) {
+    if (useAuthenticated) {
       navigate(CPATH.HOME);
     }
   }, [location, navigate]);
