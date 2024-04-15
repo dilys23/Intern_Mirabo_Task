@@ -148,6 +148,7 @@ function App() {
           dataSource={dataSource}
           columns={columns1}
           scroll={{ y: 500 }}
+          
         />
         <TableComponent columns={columns} dataSource={data} />
       </header>

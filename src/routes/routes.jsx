@@ -4,7 +4,7 @@ import LazyComponent from "../utils/lazyComponent";
 import { CPATH } from "../constants/path";
 import { Outlet, Navigate } from "react-router-dom";
 // import { useAuthenticated } from "../customHoo k/useAuthenticated";
-
+const RegisterPage = LazyComponent(lazy(() => import("../pages/Register/RegisterPage")));
 const LoginPage = LazyComponent(lazy(() => import("../pages/Login/LoginPage")));
 const HomePage = LazyComponent(lazy(() => import("../pages/Home/HomePage")));
 
@@ -20,6 +20,7 @@ export default function Router() {
       children: [{ path: "homePage", element: <HomePage /> }],
     },
     { path: "/login", element: <LoginPage /> },
+    { path: "/register", element: <RegisterPage /> }
   ]);
 
   return element;

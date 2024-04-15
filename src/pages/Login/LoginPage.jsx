@@ -11,6 +11,7 @@ function LoginPage() {
   const [usenameError, setUsernameError] = useState(null);
   const [passwordError, setPasswordError] = useState(null);
 
+  const [userdata, setuserData] = useState(null);
   const mockAPI = (callback, delay = 1000) => {
     setTimeout(() => {
       const data = {
@@ -23,6 +24,7 @@ function LoginPage() {
           password: "Dilysnguyen",
         },
       };
+      setuserData(data);
       callback(data);
     }, delay);
   };
@@ -134,9 +136,30 @@ function LoginPage() {
                   required: true,
                   message: "Please input your username!",
                 },
+              {
+                  validator(_, value) {
+                    // if (!value || (userdata && value === userdata.user)) {
+                    if (!value || value === "Dilysnguyen") {
+                      console.log("correct username");
+                      return Promise.resolve("correct username");
+                     
+                    }
+                    // console.log("lỗi này ",userdata.user);
+                    return Promise.reject(
+                      
+                      new Error(
+                        "Wrong username"
+                      ),
+                      console.log("wrong username")
+                      
+                    );
+                    
+                  },
+                }
               ]}
+              hasFeedback
             >
-              <Input />
+              <Input  placeholder="Type your name" />
             </Form.Item>
             <p>Password</p>
 
