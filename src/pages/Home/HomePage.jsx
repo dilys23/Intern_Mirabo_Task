@@ -137,6 +137,7 @@ function App() {
       }
     }
   ]
+
   return (
     <div className="App">
       <header className="App-header">
@@ -150,11 +151,18 @@ function App() {
         <TableComponent
           dataSource={dataSource}
           columns={columns1}
-          scroll={{ y: 500 }}
+          scroll={{y: 300}}
+          total={50}
+          defaultCurrent={1}
+          defaultCurrentSize={10}
         />
         <TableComponent
           columns={columns}
           dataSource={data}
+          scroll={{y: 300}}
+          total={20}
+          defaultCurrent={1}
+          defaultCurrentSize={1}
         />
       </header>
     </div>

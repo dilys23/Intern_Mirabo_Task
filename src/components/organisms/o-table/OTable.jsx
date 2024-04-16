@@ -1,24 +1,24 @@
 import React, { useState } from "react";
 import { Table } from "antd";
 
-const TableComponent = ({ dataSource, columns }) => {
-  const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+const TableComponent = ({ dataSource, columns, scroll, defaultCurrent, defaultCurrentSize , total }) => {
+  const [pagination, setPagination] = useState({ current: defaultCurrent, pageSize: defaultCurrentSize });
+
+  const handleTableChange = (pagination) => {
+    setPagination(pagination);
+  };
 
   return (
     <Table
       dataSource={dataSource}
       columns={columns}
-      scroll={{ y: 500 }}
       pagination={{
-        current: page,
-        pageSize: pageSize,
-        total: 500,
-        onChange: (current, pageSize) => {
-          setPage(current);
-          setPageSize(pageSize);
-        },
+        ...pagination,
+        total: total,
+        onChange: handleTableChange
       }}
+      scroll={scroll}
+      onChange={handleTableChange}
     />
   );
 };
