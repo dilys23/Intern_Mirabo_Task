@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom'
 import { SearchOutlined } from '@ant-design/icons'
 import Search from '../../components/molecules/m-search-input/searchTable'
 import TableComponent from '../../components/organisms/o-table/OTable'
+// import MFormButton from '../../components/molecules/m-button-icon/MFormButton'
+import OForm from '../../components/organisms/o-formbutton/OForm'
 
 function App() {
   const [columns1, setColumns] = useState([])
@@ -165,6 +167,14 @@ function App() {
           defaultCurrentSize={1}
         />
       </header>
+      <OForm/>
+      {/* <MFormButton
+      htmlType="submit"
+      type="primary"
+      size="large"
+      topIcon={<SearchOutlined />}
+      children="Search" /> */}
+
     </div>
   )
 }
