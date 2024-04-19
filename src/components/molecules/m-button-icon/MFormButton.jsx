@@ -8,7 +8,8 @@ const MFormButton = ({
   type,
   size,
   loadingIcon,
-  onclick
+  onclick,
+  isHover
 }) => {
   return (
     <div>
@@ -19,6 +20,7 @@ const MFormButton = ({
         htmlType={htmlType}
         loadingIcon={loadingIcon}
         onclick={onclick}
+        isHover={isHover}
       >
         {children}
       </AButton>

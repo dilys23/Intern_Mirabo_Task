@@ -8,27 +8,21 @@ const AButtonPC = ({
   children,
   className,
   type,
-  size,
   style,
   topIcon = <UpOutlined />,
   leftIcon = <LeftOutlined />,
   rightIcon = <RightOutlined />,
   loading,
-  hoverable,
-  disable,
   loadingIcon,
+  isHover,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(loading);
-  const [isHoverable, setIsHoverable] = useState(false);
-  const [isDisable, setIsDisable] = useState(disable);
+  const [hovered, setHovered] = useState(false);
 
-  const classAntd = clsx('a-button', type, className,
-    {
-      'hovered': isHoverable,
-      'disable': isDisable
-    });
-
+  const classAntd = clsx('a-button', type, className, {
+    isHover: isHover
+  });
   let typeButton;
 
   switch (type) {
@@ -57,28 +51,21 @@ const AButtonPC = ({
     }
   };
 
-  const handleHover = () => {
-    if (hoverable) {
-      
-      setIsHoverable(true);
-    }
-  };
-
-  const handleDisable = () => {
-    if (disable) {
-      setIsDisable(true);
-    }
-  }
   return (
     <div>
       <Button
-        style={{ ...style, ...typeButton, boxShadow: isHoverable ? 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' : ''}}
+        style={{
+          ...style,
+          ...typeButton,
+          boxShadow: isHover
+            ? 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'
+            : ''
+        }}
         className={classAntd}
         onClick={handleLoading}
-        onMouseEnter={handleHover}
-        onMouseLeave={() => setIsHoverable(false)}
         loading={isLoading}
-        disabled={isDisable}
+        onMouseEnter={() => setHovered(true)} // Bắt sự kiện di chuột vào
+        onMouseLeave={() => setHovered(false)} // Bắt sự kiện di chuột ra
         {...props}>
         <Row>
           <div>
