@@ -14,15 +14,12 @@ const AButtonPC = ({
   rightIcon = <RightOutlined />,
   loading,
   loadingIcon,
-  isHover,
   ...props
 }) => {
   const [isLoading, setIsLoading] = useState(loading);
-  const [hovered, setHovered] = useState(false);
 
-  const classAntd = clsx('a-button', type, className, {
-    isHover: isHover
-  });
+  const classAntd = clsx('a-button', type, className
+);
   let typeButton;
 
   switch (type) {
@@ -56,16 +53,11 @@ const AButtonPC = ({
       <Button
         style={{
           ...style,
-          ...typeButton,
-          boxShadow: isHover
-            ? 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'
-            : ''
+          ...typeButton
         }}
         className={classAntd}
         onClick={handleLoading}
         loading={isLoading}
-        onMouseEnter={() => setHovered(true)} // Bắt sự kiện di chuột vào
-        onMouseLeave={() => setHovered(false)} // Bắt sự kiện di chuột ra
         {...props}>
         <Row>
           <div>

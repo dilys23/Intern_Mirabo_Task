@@ -30,7 +30,6 @@ const OForm = () => {
           children="テキスト"
           size="large"
           loadingIcon={false}
-          isHover={true}
         />
 
         {/* Disabled */}
@@ -51,7 +50,6 @@ const OForm = () => {
           children="テキスト"
           size="large"
           loadingIcon={false}
-          isHover={true}
         />
 
         {/* Disabled */}
@@ -72,7 +70,6 @@ const OForm = () => {
           children="テキスト"
           size="large"
           loadingIcon={false}
-          isHover={true}
         />
 
         {/* Disabled */}
@@ -93,7 +90,6 @@ const OForm = () => {
           children="テキスト"
           size="large"
           loadingIcon={false}
-          isHover={true}
         />
 
         {/* Disabled */}

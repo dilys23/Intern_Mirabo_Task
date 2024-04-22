@@ -168,13 +168,6 @@ function App() {
         />
       </header>
       <OForm/>
-      {/* <MFormButton
-      htmlType="submit"
-      type="primary"
-      size="large"
-      topIcon={<SearchOutlined />}
-      children="Search" /> */}
-
     </div>
   )
 }
