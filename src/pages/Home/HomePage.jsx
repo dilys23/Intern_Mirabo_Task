@@ -6,7 +6,7 @@ import Search from '../../components/molecules/m-search-input/searchTable'
 import TableComponent from '../../components/organisms/o-table/OTable'
 // import MFormButton from '../../components/molecules/m-button-icon/MFormButton'
 import OForm from '../../components/organisms/o-formbutton/OForm'
-
+import OInput from '../../components/organisms/o-input/OInput'
 function App() {
   const [columns1, setColumns] = useState([])
   const [dataSource, setDataSource] = useState([])
@@ -168,6 +168,7 @@ function App() {
         />
       </header>
       <OForm/>
+      <OInput/>
     </div>
   )
 }

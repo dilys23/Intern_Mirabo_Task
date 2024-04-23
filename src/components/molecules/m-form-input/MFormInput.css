@@ -1,0 +1,28 @@
+.input-container {
+  margin-bottom: 16px; 
+}
+
+.ant-form-item {
+  margin-bottom: 0;
+}
+
+.ant-input {
+  width: 100%; 
+  padding: 8px; 
+  border: 1px solid #ccc; 
+  border-radius: 4px; 
+  transition: border-color 0.3s ease; 
+  margin-top: 30px;
+}
+
+.ant-input:focus {
+  border-color: #1890ff; 
+}
+
+.ant-form-item-has-error .ant-input {
+  border-color: #f5222d; 
+}
+
+.ant-form-item-explain-error {
+  color: #f5222d; 
+}
