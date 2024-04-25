@@ -7,6 +7,7 @@ import TableComponent from '../../components/organisms/o-table/OTable'
 // import MFormButton from '../../components/molecules/m-button-icon/MFormButton'
 import OForm from '../../components/organisms/o-formbutton/OForm'
 import OInput from '../../components/organisms/o-input/OInput'
+import DropdownEXP from '../../components/organisms/o-input-dropdown/ODropdown'
 function App() {
   const [columns1, setColumns] = useState([])
   const [dataSource, setDataSource] = useState([])
@@ -169,6 +170,7 @@ function App() {
       </header>
       <OForm/>
       <OInput/>
+      <DropdownEXP />
     </div>
   )
 }
